@@ -171,7 +171,7 @@ declare interface PaginationProps {
   page: number;
   totalPages: number;
 }
-
+S
 declare interface PlaidLinkProps {
   user: User;
   variant?: "primary" | "ghost";
@@ -188,7 +188,7 @@ declare interface PlaidLinkProps {
 // };
 
 declare interface AuthFormProps {
-  type: "sign-in" | "sign-up";
+  type: "sign-inS" | "sign-up";
 }
 
 declare interface BankDropdownProps {
@@ -202,7 +202,7 @@ declare interface BankTabItemProps {
   appwriteItemId?: string;
 }
 
-declare interface TotlaBalanceBoxProps {
+declare interface TotalBalanceBoxProps {
   accounts: Account[];
   totalBanks: number;
   totalCurrentBalance: number;
