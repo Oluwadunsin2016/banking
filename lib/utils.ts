@@ -2,6 +2,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -193,3 +194,35 @@ export const getTransactionStatus = (date: Date) => {
 
   return date > twoDaysAgo ? "Processing" : "Success";
 };
+
+
+ export const authFormSchema =(type:string)=> z.object({
+ // sign up
+  firstName: type==='sign-in'? z.string().optional() : z.string().min(3,{
+  message:'The first name must not be less than three characters'
+  }),
+  lastName: type==='sign-in'? z.string().optional() : z.string().min(3,{
+  message:'The last name must not be less than three characters'
+  }),
+  address1: type==='sign-in'? z.string().optional() : z.string().max(50,{
+  message:'The address must not be more than fifty characters'
+  }),
+  city: type==='sign-in'? z.string().optional() : z.string().max(10,{
+  message:'The city name must not be more than ten characters'
+  }),
+  state: type==='sign-in'? z.string().optional() : z.string().min(2,{
+  message:'The state must not be less than three characters'
+  }).max(20,{
+  message:'The state must not be more than twenty characters'
+  }),
+  postalCode: type==='sign-in'? z.string().optional() : z.string().min(3,{
+  message:'The postal code must not be less than three characters'
+  }).max(6,{
+  message:'The postal code must not be more than six characters'
+  }),
+  dateOfBirth: type==='sign-in'? z.string().optional() : z.string().min(3),
+  ssn: type==='sign-in'? z.string().optional() : z.string().min(3),
+  // both
+  email: z.string().email(),
+  password: z.string().min(8),
+});
